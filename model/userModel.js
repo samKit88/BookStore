@@ -1,5 +1,7 @@
 import mongoose, { Error } from "mongoose";
-import validator from "validator"
+import validator from "validator";
+import bcrypt from "bcryptjs";
+
 const schema = mongoose.Schema;
 
 const userShcema = new schema({
@@ -41,11 +43,7 @@ userShcema.statics.register = async function (
     const exist = this.findOne({ email });
     if (exist.email === email) {
         throw new Error("An account with this email exsit");
-    } 
-    // else {
-    //     //???????????????????????????????????
-    //     throw new Error("An account with this phone number exsit");
-    // }
+    }
 
     //check email and password validation 
     if (!validator.isEmail(email))
@@ -53,11 +51,17 @@ userShcema.statics.register = async function (
     if (!validator.isStrongPassword(password))
         throw new Error("Password should be at least 8 characters long and should contain at least one uppercase letter, one lowercase letter, one number and one special character");
 
+
+    // create salt for password
+    const salt = await bcrypt.genSalt(10);
+    // hash password
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const user = await this.create({
         firstName,
         lastName,
         email,
-        password
+        password: hashedPassword,
     });
     return user;
 };
