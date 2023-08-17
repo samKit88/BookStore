@@ -1,0 +1,68 @@
+import mongoose, { Error } from "mongoose";
+import validator from "validator"
+const schema = mongoose.Schema;
+
+const userShcema = new schema({
+    firstName: {
+        type: "string",
+        require: true
+    },
+    lastName: {
+        type: "string",
+        require: true
+    },
+    email: {
+        type: "string",
+        min: 2,
+        max: 35,
+        require: [true, "Please enter email!"]
+
+    },
+    password: {
+        type: "string",
+        min: 2,
+        max: 25,
+        require: [true, "Please enter password!"],
+    },
+});
+
+//register function 
+userShcema.statics.register = async function (
+    firstName,
+    lastName,
+    email,
+    password
+) {
+    //check name, email and password
+    if (!firstName, !lastName, !email, !password)
+        throw new Error("Please provide required info");
+
+    //check email if it exist 
+    const exist = this.findOne({ email });
+    if (exist.email === email) {
+        throw new Error("An account with this email exsit");
+    } 
+    // else {
+    //     //???????????????????????????????????
+    //     throw new Error("An account with this phone number exsit");
+    // }
+
+    //check email and password validation 
+    if (!validator.isEmail(email))
+        throw new Error("Please provide valid email");
+    if (!validator.isStrongPassword(password))
+        throw new Error("Password should be at least 8 characters long and should contain at least one uppercase letter, one lowercase letter, one number and one special character");
+
+    const user = await this.create({
+        firstName,
+        lastName,
+        email,
+        password
+    });
+    return user;
+};
+
+//create user model
+const User = mongoose.model("User", userShcema);
+
+export default User;
