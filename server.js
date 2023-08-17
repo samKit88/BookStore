@@ -2,10 +2,14 @@ import  express  from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import connectDatabase from "./config/databaseConfig.js";
 
 
 dotenv.config();
 const PORT  = parseInt(process.env.PORT) || 3000; 
+
+//connect to database
+connectDatabase();
 
 //Global middleware
 const app = express();
