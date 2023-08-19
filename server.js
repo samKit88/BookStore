@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDatabase from "./config/databaseConfig.js";
 import authRouter from "./router/auth/authRouter.js";
+// import bookRouter from './router/book/bookRoute.js'
 
 
 
@@ -20,6 +21,7 @@ app.use(cors());
 
 //setup router
 app.use("/api/v1", authRouter);
+// app.use("/api/v1", bookRouter);
 
 app.get('/', (req, res) => {
     res.send("Hello world!!!");

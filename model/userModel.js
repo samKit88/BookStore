@@ -35,15 +35,18 @@ userShcema.statics.register = async function (
     email,
     password
 ) {
+    
     //check name, email and password
-    if (!firstName, !lastName, !email, !password)
+    if (!firstName || !lastName || !email || !password){
         throw new Error("Please provide required info");
-
+    };
     //check email if it exist 
-    const exist = this.findOne({ email });
-    if (exist.email === email) {
-        throw new Error("An account with this email exsit");
-    }
+    const exist = await this.findOne({ email });
+    if (exist){
+        if (exist.email === email) {
+            throw new Error("An account with this email exsist.");
+        };
+    };
 
     //check email and password validation 
     if (!validator.isEmail(email))
@@ -63,6 +66,30 @@ userShcema.statics.register = async function (
         email,
         password: hashedPassword,
     });
+    return user;
+};
+
+//login function 
+userShcema.statics.login = async function (email, password) {
+    
+    if (!email)
+        throw new Error("Please enter an email."); 
+    if (!password)
+        throw new Error("Please enter your password.");
+
+    //get email and password
+    const user = await this.findOne({email}).select("+password");
+
+    if (!user) {
+        throw new Error("A user with this email dosen't exsit.");
+    }
+    //compare the password 
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+        throw new Error("Your password is incorrect.");
+    };
+
     return user;
 };
 
