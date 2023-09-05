@@ -17,14 +17,17 @@ const loginUser = async (req, res) => {
 
         //create token 
         const token = createToken(user._id);
-        res.status(201).json({
-            success: true,
-            massege: "Successfuly logged in",
-            token,
+
+        res.status(200).json({
+            // success: true,
+            // massege: "Successfuly logged in",
+            email, 
+            token
         });
-    } catch {
-        res.status(404).json({
-            success: false,
+    } catch (error) {
+        res.status(400).json({
+            error: error.message
+            // success: false,
             //difine the error
             // error: error.message,
         });
