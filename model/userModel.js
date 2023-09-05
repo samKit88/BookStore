@@ -28,8 +28,8 @@ const userShcema = new schema({
     },
 });
 
-//register function 
-userShcema.statics.register = async function (
+// signup function 
+userShcema.statics.signup = async function (
     firstName,
     lastName,
     email,
@@ -51,6 +51,7 @@ userShcema.statics.register = async function (
     //check email and password validation 
     if (!validator.isEmail(email))
         throw new Error("Please provide valid email");
+
     if (!validator.isStrongPassword(password))
         throw new Error("Password should be at least 8 characters long and should contain at least one uppercase letter, one lowercase letter, one number and one special character");
 
@@ -74,6 +75,7 @@ userShcema.statics.login = async function (email, password) {
     
     if (!email)
         throw new Error("Please enter an email."); 
+    
     if (!password)
         throw new Error("Please enter your password.");
 
