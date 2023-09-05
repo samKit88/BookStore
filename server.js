@@ -6,6 +6,7 @@ import connectDatabase from "./config/databaseConfig.js";
 import authRouter from "./router/auth/authRouter.js";
 import bookRouter from './router/book/bookRoute.js';
 import reviewRouter from "./router/review/reviewRoute.js";
+import salesRouter from "./router/sales/salesRoute.js";
 
 
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(cors());
 app.use("/api/v1", authRouter);
 app.use("/api/v1", bookRouter);
 app.use("/api/v1", reviewRouter);
+app.use("/api/v1", salesRouter);
 
 app.get('/', (req, res) => {
     res.send("Hello world!!!");
