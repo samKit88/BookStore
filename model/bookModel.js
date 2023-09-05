@@ -30,8 +30,10 @@ const userSchema = new mongoose.Schema({
         required: [true, "Couldn't find the user"],
     },
     price: "Number",
-    // coverPage: "coverPage_URL",
-
+    quantity: "Number",
+    coverPage: {
+        type: Buffer,         
+    }, 
 });
 
 const bookSchema = mongoose.model("bookSchema", userSchema);

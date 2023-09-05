@@ -10,6 +10,9 @@ const bookReviewed = async (req, res) => {
         const reviewed = req.body;
 
         const bookDB = await bookSchema.findById(bookID);
+
+        console.log(reviewed.comment);
+        console.log(reviewed.rating);
          
         //check book
         if(!bookDB){

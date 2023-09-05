@@ -7,11 +7,14 @@ const createBook = async (req, res) => {
         //get book
         const book = req.body;
         const addedBy = req.user._id;
+        //accept the path for cover page
+        //const path = req.file.path;
 
         //create new book
         const newBook = new bookSchema({
             ...book,
             bookLoomerID: addedBy,
+            //coverPage: path,
         }); 
 
         await newBook.save();
