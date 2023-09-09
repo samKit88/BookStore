@@ -1,5 +1,5 @@
 import User from "../../model/userModel.js";
-import createToken from "../../utils/createToken.js";
+// import createToken from "../../utils/createToken.js";
 
 
 const loginUser = async (req, res) => {
@@ -15,14 +15,14 @@ const loginUser = async (req, res) => {
             throw new Error("Coudn't sign in.");
         };
 
-        //create token 
-        const token = createToken(user._id);
+        // //create token 
+        // const token = createToken(user._id);
 
         res.status(200).json({
             // success: true,
             // massege: "Successfuly logged in",
             email, 
-            token
+            // token
         });
     } catch (error) {
         res.status(400).json({
