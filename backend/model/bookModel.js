@@ -32,8 +32,7 @@ const userSchema = new mongoose.Schema({
     price: "Number",
     quantity: "Number",
     coverPage: {
-        type: "string",
-        require: true         
+        type: "string",       
     }, 
 }, {timestamps: true});
 
