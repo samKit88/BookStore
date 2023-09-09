@@ -38,15 +38,15 @@ const sellBook = async (req, res) => {
         const totalPrice = quantityOrder * bookDB.price;
         
         
-        const updateQuantity= await bookSchema.findOneAndUpdate({_id: bookID},
+        await bookSchema.findOneAndUpdate({_id: bookID},
             {
                 quantity : newQuantity
             });
 
 
-            console.log(updateQuantity)
+            // console.log(updateQuantity)
 
-        //create new book
+        // create new sales info
         const newSales = new salesBook({
             quantityOrder,
             book: bookID,
@@ -55,24 +55,22 @@ const sellBook = async (req, res) => {
             totalPrice, 
         });
 
-        console.log(newSales)
+        // console.log(newSales)
 
-        // res.status(201).json({
-        //     newSales
-        // })
 
         await newSales.save();
         // await bookSchema.save();
 
-        res.status(201).json({
+        res.status(200).json({
             success: true,
-            message: "Successful"
+            message: "Successful",
+            newSales: newSales
         });
 
-    } catch (err) {
+    } catch (error) {
         res.status(404).json({
             success: false,
-            message: err.message
+            message: error.message
         });
     };
 
