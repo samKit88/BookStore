@@ -1,44 +1,35 @@
-import multer from "multer";
-import bookSchema from "../model/bookModel.js";
+import multer from 'multer'
+import path from 'path'
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
 
-const storageMiddleware = async (req, res, next) => {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+console.log("thedir",__dirname)
 
 
-    const uploadImage = req.file;
+console.log('the second',__dirname.split('\\middleware'));
 
-    //config multer 
-    const storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, __dirname + './Uploads/books');
-        },
-        filename: function (req, file, callback) {
-            cb(null, file.originalname);
-        },
-    });
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        const uploadDir = path.join(__dirname.split("\\middleware")[0], 'Uploads', 'books');
+        cb(null, uploadDir);
+    },
+    filename: function (req, file, callback) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
 
-    const upload = multer({storage:storage});
+        // Use path module to get the file extension
+        const fileExtension = path.extname(file.originalname);
 
-    console.log(upload.destination, upload.filename);
-    console.log(uploadImage);
-
-    next();
-}
+        // Generate the filename with the original extension
+        callback(null, file.fieldname + '-' + uniqueSuffix + fileExtension);
+    },
+});
 
 
-export default storageMiddleware;
+const upload = multer({ storage: storage });
 
+const storageMiddleware = upload.single('uploadImage');
 
-// const fileController = async (req, res) => {
-//     console.log("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
-//     const bookID = req.params.id;
-
-//     const book = await bookSchema.findById(bookID);
-
-//     fileUrl = book.coverPage;
-
-//     console.log("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
-//     console.log(fileUrl);
-// };
-
-// export default fileController;
+export default storageMiddleware
