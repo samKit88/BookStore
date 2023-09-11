@@ -11,8 +11,8 @@ const bookReviewed = async (req, res) => {
 
         const bookDB = await bookSchema.findById(bookID);
 
-        console.log(reviewed.comment);
-        console.log(reviewed.rating);
+        // console.log(reviewed.comment);
+        // console.log(reviewed.rating);
          
         //check book
         if(!bookDB){
