@@ -31,9 +31,9 @@ const userSchema = new mongoose.Schema({
     },
     price: "Number",
     quantity: "Number",
-    coverPage: {
-        type: "string",       
-    }, 
+    // coverPage: {
+    //     type: "string",       
+    // }, 
 }, {timestamps: true});
 
 const bookSchema = mongoose.model("bookSchema", userSchema);
