@@ -1,6 +1,6 @@
 import signupUser from "../../controller/auth/signupController.js";
 import loginUser from "../../controller/auth/loginController.js";
-import requireAuth from "../../middleware/authenticator.js";
+
 
 
 import express from "express";

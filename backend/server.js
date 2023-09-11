@@ -1,5 +1,4 @@
 import  express  from "express";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDatabase from "./config/databaseConfig.js";
@@ -31,6 +30,6 @@ app.get('/', (req, res) => {
 });
 
 
-const server = app.listen(PORT, (req, res) => {
+app.listen(PORT, (req, res) => {
     console.log(`server is listing at port: ${PORT}`);
 });
