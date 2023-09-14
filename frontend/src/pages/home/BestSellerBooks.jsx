@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 //component
-// import BookCards from '../components/BookCards'
+import BookCards from '../../components/BookCards'
 
 const BestSellerBooks = () => {
   const [books, setBooks] = useState([])
@@ -12,7 +12,11 @@ const BestSellerBooks = () => {
       .then((data) => setBooks(data.slice(0, 6)))
   }, [])
 
-  return <div>{/* <BookCards books={books} headLine="best books" /> */}</div>
+  return (
+    <div>
+      <BookCards books={books} headLine="best books" />{' '}
+    </div>
+  )
 }
 
 export default BestSellerBooks
