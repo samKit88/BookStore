@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaBars } from 'react-icons/fa6'
+import { FaBarsStaggered } from 'react-icons/fa6'
 
 const Navbar = () => {
   const [isScrolly, setIsScrolly] = useState(false)
@@ -35,30 +35,46 @@ const Navbar = () => {
 
     window.addEventListener('scroll', handleScrolly)
     return () => window.removeEventListener('scroll', handleScrolly)
-  }, [])
+  }, [isScrolly])
 
   return (
-    <header className="">
-      <nav>
+    <header className="bg-zinc-300">
+      <nav className="">
         <div
           className={`${
             isScrolly
-              ? '  bg-red-500 h-12 fixed top-0 left-0 right-0  flex justify-between items-center  '
+              ? ' h-24 pl-7 pr-7 bg-zinc-300 text-lg text-center fixed top-0 left-0 right-0   rounded-b-lg  '
               : ''
           }`}
         >
-          <div className="text-center md:mt-16 md:mb-16 mt-8 mb-8">
-            {/* btn for lg device */}
-            <button className=" md:hidden mr-18">
-              <FaBars className=" bg-gray-700" />
-            </button>
-            <Link to="/" className=" md:text-6xl text-3xl">
+          <div
+            className={` ${
+              isScrolly
+                ? 'flex justify-center'
+                : ' md:pt-16 md:pb-16 pt-8 pb-8 flex justify-center items-center'
+            }`}
+          >
+            <Link to="/" className=" md:text-6xl text-3xl text-center">
               Book Store
             </Link>
+
+            {/* btn lg device */}
+            <div className=" flex justify-end">
+              <button>
+                <FaBarsStaggered className="w-5 hover:text-blue-700 " />
+              </button>
+            </div>
           </div>
+
           <hr />
           {/* nav items for large device */}
-          <ul className="md:flex md:justify-center uppercase space-x-52 hidden ">
+          <ul
+            className={`${
+              isScrolly
+                ? 'space-x-32'
+                : 'md:flex md:justify-center uppercase font-normal  space-x-32  hidden '
+            }`}
+          >
             {nav.map(({ link, path }) => (
               <Link to={path} key={path}>
                 {link}
@@ -74,3 +90,5 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+//  flex-1 justify-between align-top gap-5  items-center
