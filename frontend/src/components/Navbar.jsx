@@ -50,7 +50,7 @@ const Navbar = () => {
           <div className="text-center md:mt-16 md:mb-16 mt-8 mb-8">
             {/* btn for lg device */}
             <button className=" md:hidden mr-18">
-              <FaBars />
+              <FaBars className=" bg-gray-700" />
             </button>
             <Link to="/" className=" md:text-6xl text-3xl">
               Book Store
