@@ -1,17 +1,17 @@
-import User from "../../model/userModel.js";
-import bookSchema from "../../model/bookModel.js";
+import User from '../../model/userModel.js'
+import bookSchema from '../../model/bookModel.js'
 
 const createBook = async (req, res) => {
-  console.log(req.body)
-  const path = req.file.path;
-  console.log("path", path)
+  // console.log(req.body)
+  // const path = req.file.path;
+  // console.log("path", path)
 
   try {
     //get book
-    const book = req.body;
-    const addedBy = req.user._id;
+    const book = req.body
+    const addedBy = req.user._id
 
-    console.log("Added by " + addedBy);
+    console.log('Added by ' + addedBy)
     //accept the path for cover page
     //const path = req.file.path;
 
@@ -19,19 +19,19 @@ const createBook = async (req, res) => {
     const newBook = new bookSchema({
       ...book,
       bookLoomerID: addedBy,
-      coverPage: path
+      // coverPage: path,
       //coverPage: path,
-    });
+    })
 
-    await newBook.save();
+    await newBook.save()
 
-    res.status(200).json(newBook);
+    res.status(200).json(newBook)
   } catch (err) {
     res.status(500).json({
       success: false,
       message: err.message,
-    });
+    })
   }
-};
+}
 
-export default createBook;
+export default createBook
