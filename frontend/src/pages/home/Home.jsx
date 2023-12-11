@@ -1,10 +1,17 @@
 import React from 'react'
 
+//component
+import Banner from '../../components/Banner'
+
+//pages
+import BestSellerBooks from './BestSellerBooks'
+
 const Home = () => {
   return (
-    <div>
-      <div className=" h-screen ">Home</div>
-      <div className=" h-screen bg-slate-700"></div>
+    <div className=" bg-gray-100">
+      <Banner />
+      {/* <BestSellerBooks /> */}
+      <div className=" h-screen"></div>
     </div>
   )
 }
