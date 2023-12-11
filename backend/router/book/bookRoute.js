@@ -9,13 +9,10 @@ import getAllBooks from "../../controller/book/getAllBooksController.js";
 //express router
 const router = express.Router();
 
-
-
-
-router.get('/books', requireAuth, getAllBooks);
-router.post('/create', requireAuth, storageMiddleware, createBook);
-router.get('/book/:id', requireAuth, getBooks);
-router.post('/update/:id', requireAuth, updateBook);
-router.delete('/delete/:id', requireAuth, deleteBook);
+router.get("/books", getAllBooks);
+router.post("/create", requireAuth, storageMiddleware, createBook);
+router.get("/book/:id", requireAuth, getBooks);
+router.post("/update/:id", requireAuth, updateBook);
+router.delete("/delete/:id", requireAuth, deleteBook);
 
 export default router;

@@ -1,42 +1,40 @@
-import bookSchema from "../../model/bookModel.js";
+import bookSchema from '../../model/bookModel.js'
 
 const deleteBook = async (req, res) => {
   try {
     //get book and delete
-    const bookID = req.params.id;
-    const userID = req.user.id;
+    const bookID = req.params.id
+    const userID = req.user.id
 
-    const bookDB = await bookSchema.findById(bookID);
+    const bookDB = await bookSchema.findById(bookID)
 
     if (bookDB.bookLoomerID != userID) {
       res.status(403).json({
         success: false,
-        message: "Unauthorized.",
-      });
+        message: 'Unauthorized.',
+      })
     }
     //check book
     if (!bookDB) {
       res.status(404).json({
         success: false,
-        message: "Book not found.",
-      });
-    }else {
-        await bookSchema.findByIdAndDelete(bookID);
+        message: 'Book not found.',
+      })
+    } else {
+      await bookSchema.findByIdAndDelete(bookID)
 
-        //success message
-        res.status(201).json({
-          success: true,
-          message: "Successfuly deleted",
-        });
+      //success message
+      res.status(201).json({
+        success: true,
+        message: 'Successfuly deleted',
+      })
     }
-
-
   } catch (err) {
     res.status(500).json({
       success: false,
       message: err.message,
-    });
+    })
   }
-};
+}
 
-export default deleteBook;
+export default deleteBook

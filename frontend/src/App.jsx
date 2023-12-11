@@ -1,27 +1,15 @@
-// Import the Browser Router, routes component, route
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-// pages and components
-import { Home } from "./pages/Home";
-import { Signup } from "./pages/Signup";
-import { Login } from "./pages/Login";
-import { Navbar } from "./components/Navbar";
+import { Outlet } from 'react-router-dom'
+import Navbar from './components/Navbar'
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Navbar/>
-          <div className="pages">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </div>
-      </BrowserRouter>
-    </div>
-  );
+    <>
+      <Navbar />
+      <div className="">
+        <Outlet />
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
