@@ -29,6 +29,7 @@ const Banner = () => {
             </button>
           </div>
         </div>
+        <div>{/* <BannerCards /> */}</div>
       </div>
     </div>
   )
