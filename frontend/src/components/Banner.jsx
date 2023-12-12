@@ -13,7 +13,7 @@ const Banner = () => {
           <p className="md:w-4/5">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
             dolor omnis obcaecati nam, vel aut rem placeat minima facere rerum
-            dolores, sapiente, debitis aperiam iusto voluptatibus cumque quo
+            dolores, sapbiente, debitis aperiam iusto voluptatibus cumque quo
             alias error.
           </p>
           <div>
