@@ -7,6 +7,7 @@ import Banner from '../../components/Banner'
 import BestSellerBooks from './BestSellerBooks'
 import FavBook from './FavBook'
 import PromoBanner from './PromoBanner'
+import Footers from '../../components/Footers'
 // import Review from './Review'
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
       <FavBook />
       <PromoBanner />
       {/* <Review /> */}
+      <Footers />
       <div className=" h-screen"></div>
     </div>
   )
