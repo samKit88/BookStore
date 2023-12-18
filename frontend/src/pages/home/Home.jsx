@@ -19,7 +19,7 @@ const Home = () => {
       <PromoBanner />
       {/* <Review /> */}
       <Footers />
-      <div className=" h-screen"></div>
+      {/* <div className=" h-screen"></div> */}
     </div>
   )
 }
